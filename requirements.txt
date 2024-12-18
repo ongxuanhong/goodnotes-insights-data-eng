@@ -2,3 +2,4 @@ pyspark==3.5.3
 pandas==2.2.3
 black==24.10.0
 flake8==7.1.1
+ydata-profiling==4.12.1

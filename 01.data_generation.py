@@ -99,7 +99,7 @@ def generate_user_metadata(num_records, filename):
 
 
 # Generate sample datasets
-generate_user_interactions(1000000, "user_interactions_sample.csv")
-generate_user_metadata(100000, "user_metadata_sample.csv")
+generate_user_interactions(1000000, "data/user_interactions_sample.csv")
+generate_user_metadata(100000, "data/user_metadata_sample.csv")
 
 print("Sample datasets generated successfully.")
