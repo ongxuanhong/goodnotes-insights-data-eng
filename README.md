@@ -19,37 +19,6 @@ This documentation outlines my solution for processing and analyzing user intera
 2. **Silver Layer**: Cleaned and transformed data in fact/dimension model
 3. **Gold Layer**: Pre-aggregated metrics and analytics
 
-## Active User Metrics
-
-### Definition of Active Users
-
-An "active user" is defined as a unique user who performed at least one of these actions within the measurement period:
-- Page view
-- Edit
-- Create
-- Delete
-- Share
-
-### Metrics Calculation
-
-#### Daily Active Users (DAU)
-```sql
-SELECT 
-    partition_date,
-    COUNT(DISTINCT user_id) as daily_active_users
-FROM fact_interactions
-GROUP BY partition_date
-```
-
-#### Monthly Active Users (MAU)
-```sql
-SELECT 
-    DATE_TRUNC('month', partition_date) as month_date,
-    COUNT(DISTINCT user_id) as monthly_active_users
-FROM fact_interactions
-GROUP BY DATE_TRUNC('month', partition_date)
-```
-
 ### Scalability Features
 
 1. **Efficient Data Storage**
@@ -83,3 +52,19 @@ etl.backfill_gold_metrics(
     parallel=True
 )
 ```
+
+## Tasks
+
+1. Calculate Daily Active Users (DAU) and Monthly Active Users (MAU) for the past year:
+   - Define clear criteria for what constitutes an "active" user
+   - Implement a solution that scales efficiently for large datasets
+   - [Optional] Explain how you:
+     - Handle outliers and extremely long duration values, OR
+     - Describe challenges you might face while creating similar metrics and how you would address them
+
+2. Calculate session-based metrics:
+   - Calculate metrics including:
+     - Average session duration
+     - Actions per session
+   - Define clear criteria for what constitutes a "session"
+   - [Optional] Provide analysis of the results if time permits
