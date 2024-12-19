@@ -1,0 +1,71 @@
+@startuml Data Architecture
+
+' Define styles
+skinparam backgroundColor white
+skinparam componentStyle uml2
+skinparam rectangleRoundCorner 10
+
+' Define components
+rectangle "Data Sources" as sources {
+    file "User Interactions\n(~1TB CSV)" as interactions
+    file "User Metadata\n(~100GB CSV)" as metadata
+}
+
+rectangle "Bronze Layer" as bronze {
+    database "Raw Parquet Storage" as raw {
+        folder "interactions/" {
+            file "partition_date=2024-01-01/"
+            file "partition_date=2024-01-02/"
+        }
+        folder "metadata/" {
+            file "country=US/"
+            file "country=UK/"
+        }
+    }
+}
+
+rectangle "Silver Layer" as silver {
+    database "Processed Tables" as processed {
+        folder "fact_interactions" {
+            file "user_id: String"
+            file "timestamp: Timestamp"
+            file "action_type: String"
+            file "page_id: String"
+            file "duration_ms: Long"
+            file "partition_date: Date"
+        }
+        folder "dim_users" {
+            file "user_id: String"
+            file "join_date: Date"
+            file "country: String"
+            file "device_type: String"
+            file "subscription_type: String"
+        }
+    }
+}
+
+rectangle "Gold Layer" as gold {
+    database "Analytics" as analytics {
+        folder "daily_metrics" {
+            file "daily_active_users: Long"
+            file "total_actions: Long"
+            file "avg_duration_ms: Double"
+        }
+        folder "monthly_metrics" {
+            file "monthly_active_users: Long"
+            file "total_monthly_actions: Long"
+        }
+        folder "session_metrics" {
+            file "actions_per_session: Long"
+            file "session_duration_ms: Long"
+        }
+    }
+}
+
+' Define relationships
+interactions --> bronze : CSV Ingestion
+metadata --> bronze : CSV Ingestion
+bronze --> silver : Clean & Transform
+silver --> gold : Aggregate & Calculate
+
+@enduml
