@@ -22,7 +22,7 @@ services:
 
 
   spark-worker:
-    image: docker.io/bitnami/spark:3.3
+    image: docker.io/bitnami/spark:3.5.3
     deploy:
       replicas: 2
     environment:

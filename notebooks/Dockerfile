@@ -23,5 +23,4 @@ RUN curl -O https://repo1.maven.org/maven2/software/amazon/awssdk/s3/2.18.41/s3-
     && mv delta-storage-2.2.0.jar /usr/local/spark/jars \
     && mv hadoop-aws-3.3.2.jar /usr/local/spark/jars
 
-RUN pip install minio==7.1.13 \
-    dagster==1.1.19
+RUN pip install minio==7.1.13
