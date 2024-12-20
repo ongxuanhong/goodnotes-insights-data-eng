@@ -3,6 +3,11 @@
 ## Overview
 This documentation outlines my solution for processing and analyzing user interaction data. The pipeline is built using Apache Spark and follows a modern data lakehouse architecture with bronze, silver, and gold layers for optimal data processing and analytics.
 
+## Loom.com (TL;DR)
+1. Infrastructure Introduction: https://www.loom.com/share/7c2753b699894fe7bf889276962cb4c8?sid=4139a172-693e-4c1b-a809-fb39da99f273
+2. First Data Analysis Implementation: https://www.loom.com/share/ad1622866fa846f89ecbbbea2a9f39c0?sid=c0bf155d-32bf-47dc-91bf-1305a8b22b59
+3. Data Optimization Strategies: https://www.loom.com/share/ae76d5d27a1c42eabe5f80a857ac0295?sid=1fd1336b-d60a-4832-9017-de9bc684835a
+
 ## Data Architecture
 
 ![Data architecture diagram](diagrams/figures/data_architecture.png)
