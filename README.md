@@ -53,6 +53,79 @@ etl.backfill_gold_metrics(
 )
 ```
 
+## Project Structure
+
+```
+project_root/
+├── data/                      # Sample datasets and data artifacts
+├── diagrams/                  # Architecture and design diagrams
+├── notebooks/                 # Jupyter notebooks for analysis
+├── profiles/                  # Data profiling reports
+├── spark/                    # Spark configuration and deployment
+└── scripts/                  # Main processing scripts
+```
+
+### Key Components
+
+#### Data Processing Scripts
+- `01.data_generation.py`: Generates sample datasets for development and testing
+- `02.data_profiling.py`: Creates detailed data quality and statistics reports
+- `03.data_transformation.ipynb`: Documents the ETL process and transformations
+- `04.data_optimization.ipynb`: Performance optimization and tuning notebooks
+
+#### Data Directory
+- Contains sample datasets:
+  - `user_interactions_sample.csv`: User activity data
+  - `user_metadata_sample.csv`: User profile information
+
+#### Diagrams
+- `figures/`: Generated diagrams in PNG format
+- `plantuml/`: Source files for architecture diagrams
+- Architecture diagrams illustrating:
+  - Data flow
+  - System components
+  - Processing stages
+
+#### Docker Configuration
+- `docker-compose.yaml`: Containerization setup for the entire pipeline
+- `notebooks/Dockerfile`: Environment for Jupyter analysis
+- `spark/Dockerfile`: Spark cluster configuration
+
+#### Notebooks
+Detailed analysis and development notebooks:
+- `01.exploration.ipynb`: Initial data exploration
+- `03.data_transformation.ipynb`: ETL process documentation
+- `04.data_optimization.ipynb`: Performance optimization studies
+
+#### Configuration
+- `spark-defaults.conf`: Spark configuration for optimal performance
+- `requirements.txt`: Python package dependencies
+
+## Getting Started
+
+1. Environment Setup
+```bash
+# Start the containers
+docker-compose up -d
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+2. Running the Pipeline
+```bash
+# Generate sample data
+python 01.data_generation.py
+
+# Run data profiling
+python 02.data_profiling.py
+
+```
+
+3. Accessing Results
+- Data profiles: `profiles/`
+- Analysis notebooks: `http://localhost:8888`
+
 ## Tasks
 
 1. Calculate Daily Active Users (DAU) and Monthly Active Users (MAU) for the past year:
